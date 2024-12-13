@@ -182,9 +182,7 @@ namespace Travelers_CRUD
             Assert.That(responseContent["name"].ToString(), Is.EqualTo(randomName));  
             Assert.That(responseContent["bestTimeToVisit"].ToString(), Is.EqualTo("after salary for sure"));
 
-            // Trying to search for the old name anywhere
-            // firstly get all elements again
-            
+        
             getResponse = client.Execute(getRequest);
             var updatedDestinations = JArray.Parse(getResponse.Content);
 
@@ -212,7 +210,6 @@ namespace Travelers_CRUD
             Assert.True(delResponse.IsSuccessful);
 
 
-            // try to reach the destination now
             var verifyGetRequest = new RestRequest("/destination/{id}", Method.Get)
                 .AddUrlSegment("id", lastDestID);
             var verifyResponse = client.Execute(verifyGetRequest);
